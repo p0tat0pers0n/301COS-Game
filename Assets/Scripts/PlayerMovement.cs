@@ -8,12 +8,14 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSensitivity = 2f; // Mouse rotation sensitivity
     public float rotationSmoothing = 0.1f; // Mouse rotation smoothing
     public float jumpAcceleration = 5f;
+    public float jumpGroundAllowance;
     public Animator anim;
     public Transform playerCamera;
 
     private Rigidbody rb;
     private CapsuleCollider playerCollider;
     private Vector3 movementInput;
+    private RaycastHit hit;
     public float rotationSpeed = 100f; // Player rotation speed
     private float mouseXSmooth = 0f;
     private float mouseYSmooth = 0f;
@@ -40,7 +42,10 @@ private void Update()
         float rawMouseX = Input.GetAxis("Mouse X");
         float rawMouseY = Input.GetAxis("Mouse Y");
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        Physics.Raycast(transform.position, -Vector3.up, out hit);
+        float distancetoGround = hit.distance - 1;
+
+        if (Input.GetKeyDown(KeyCode.Space) && distancetoGround <= jumpGroundAllowance)
         {
             rb.velocity += new Vector3(0f, jumpAcceleration, 0f);
         }
@@ -75,43 +80,3 @@ private void Update()
         anim.SetFloat("Vertical", verticalInput);
     }
 }
-/*
-public class PlayerMovement : MonoBehaviour
-{
-    public Animator anim;
-    public Transform cam;
-
-    public float rotationSpeed = 100f;
-    public float moveSpeed = 5f;  // Speed at which the object moves
-
-    private Rigidbody rb;
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        // Get input values
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        anim.SetFloat("Horizontal", horizontalInput);
-        anim.SetFloat("Vertical", verticalInput);
-
-        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-        float magnitude = movementDirection.magnitude;
-        magnitude = Mathf.Clamp01(magnitude);
-        movementDirection = cam.forward * verticalInput + cam.right * horizontalInput;
-        movementDirection.Normalize();
-
-        rb.velocity = movementDirection * magnitude * moveSpeed;
-
-        if (movementDirection != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, toRotation, rotationSpeed * Time.deltaTime));
-        }
-    }
-}*/
