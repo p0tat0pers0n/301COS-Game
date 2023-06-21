@@ -45,7 +45,7 @@ private void Update()
         Physics.Raycast(transform.position, -Vector3.up, out hit);
         float distancetoGround = hit.distance - 1;
 
-        while (Input.GetKeyDown(KeyCode.Space) && distancetoGround <= jumpGroundAllowance)
+        if (Input.GetKeyDown(KeyCode.Space) && distancetoGround <= jumpGroundAllowance)
         {
             rb.velocity += new Vector3(0f, jumpAcceleration, 0f);
         }
