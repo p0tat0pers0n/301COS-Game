@@ -34,8 +34,8 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics.Raycast(transform.position, -Vector3.up, (float)(distToGround + 0.1));
     }
-
-private void Update()
+    private double desiredTimeAtJump = 0;
+    private void Update()
     {
         // Get player input
         movementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
@@ -44,8 +44,9 @@ private void Update()
 
         Physics.Raycast(transform.position, -Vector3.up, out hit);
         float distancetoGround = hit.distance - 1;
-        if (Input.GetKeyDown(KeyCode.Space) && distancetoGround <= jumpGroundAllowance)
+        if (Input.GetKey(KeyCode.Space) && distancetoGround <= jumpGroundAllowance && desiredTimeAtJump <= Time.fixedTimeAsDouble)
         {
+            desiredTimeAtJump = Time.fixedTimeAsDouble + 0.1;
             rb.velocity += new Vector3(0f, jumpAcceleration, 0f);
         }
 
@@ -54,7 +55,7 @@ private void Update()
         mouseYSmooth = Mathf.SmoothDamp(mouseYSmooth, rawMouseY, ref mouseYVel, rotationSmoothing);
 
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
-    }
+        }
 
     private void FixedUpdate()
     {
