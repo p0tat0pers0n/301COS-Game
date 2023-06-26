@@ -61,6 +61,8 @@
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Baker House\Readme.txt" />
+    <None Include="Assets\BrokenVector\LowPolyTreePack\README.txt" />
     <None Include="Assets\Nature\GrassAndFlowers\Info.txt" />
   </ItemGroup>
   <ItemGroup>
