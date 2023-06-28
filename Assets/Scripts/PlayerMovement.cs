@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         mouseXSmooth = Mathf.SmoothDamp(mouseXSmooth, rawMouseX, ref mouseXVel, rotationSmoothing);
         mouseYSmooth = Mathf.SmoothDamp(mouseYSmooth, rawMouseY, ref mouseYVel, rotationSmoothing);
 
-        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
+        //Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
         }
 
     private void FixedUpdate()

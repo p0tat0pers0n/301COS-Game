@@ -36,7 +36,15 @@ public class StatusBarScript : MonoBehaviour
     
     public void changePlayerHealth(float amount)
     {
-        playerHealth -= amount;
-        healthTransform.sizeDelta = new Vector2((playerInitialHealth / healthStartingWidth) * playerHealth, healthTransform.sizeDelta.y);
+        playerHealth += amount;
+        healthTransform.sizeDelta = new Vector2((healthStartingWidth / playerInitialHealth) * playerHealth, healthTransform.sizeDelta.y);
+        healthTransform.position = new Vector2(- healthTransform.position.x + (((healthStartingWidth / playerInitialHealth) * playerHealth) / 2), healthTransform.position.y);
+    }
+
+    public void changePlayerStamina(float amount)
+    {
+        playerStamina += amount;
+        staminaTransform.sizeDelta = new Vector2((staminaStartingWidth / playerInitialStamina) * playerStamina, staminaTransform.sizeDelta.y);
+        staminaTransform.position = new Vector2(staminaTransform.position.x - ((staminaStartingWidth / playerInitialStamina) * playerStamina / 2), staminaTransform.position.y);
     }
 }
