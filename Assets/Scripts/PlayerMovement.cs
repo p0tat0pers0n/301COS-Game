@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f; // Player movement speed
     public float rotationSensitivity = 2f; // Mouse rotation sensitivity
     public float rotationSmoothing = 0.1f; // Mouse rotation smoothing
     public float jumpAcceleration = 5f;
     public float jumpGroundAllowance;
     public Animator anim;
     public Transform playerCamera;
+    public GameObject player;
+    public StatusBarScript sn;
 
+    private float speed = 5f; // Player movement speed
+    private int previousTime;
     private Rigidbody rb;
     private CapsuleCollider playerCollider;
     private Vector3 movementInput;
@@ -28,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponent<CapsuleCollider>();
         distToGround = playerCollider.bounds.extents.y;
+
+        StatusBarScript sn = player.GetComponent<StatusBarScript>();
     }
 
     private bool IsGrounded()
@@ -50,11 +55,27 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity += new Vector3(0f, jumpAcceleration, 0f);
         }
 
+        // Player Sprint
+        if (Input.GetKey(KeyCode.LeftShift) && sn.playerStamina > 0)
+        {
+            speed = 25f;
+
+            if (Mathf.RoundToInt(Time.time) % 0.5 == 0 && previousTime != Mathf.RoundToInt(Time.time)) { 
+                sn.changePlayerStamina(-1);
+                previousTime = Mathf.RoundToInt(Time.time);
+            }
+        }
+        else
+        {
+            speed = 5f;
+            if (sn.playerStamina < 100) { sn.changePlayerStamina(1); }
+        }
+
         // Apply mouse smoothing
         mouseXSmooth = Mathf.SmoothDamp(mouseXSmooth, rawMouseX, ref mouseXVel, rotationSmoothing);
         mouseYSmooth = Mathf.SmoothDamp(mouseYSmooth, rawMouseY, ref mouseYVel, rotationSmoothing);
 
-        //Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
+        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
         }
 
     private void FixedUpdate()

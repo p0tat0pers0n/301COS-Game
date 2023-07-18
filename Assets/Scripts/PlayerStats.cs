@@ -6,11 +6,11 @@ public class StatusBarScript : MonoBehaviour
 {
     public float playerInitialHealth = 100;
     public float playerInitialStamina = 100;
-    private float playerHealth;
-    private float playerStamina;
+    public float playerStamina;
     public GameObject healthBar;
     public GameObject staminaBar;
 
+    private float playerHealth;
     private RectTransform healthTransform;
     private RectTransform staminaTransform;
     private float healthStartingWidth;
@@ -30,8 +30,6 @@ public class StatusBarScript : MonoBehaviour
 
         playerHealth = playerInitialHealth;
         playerStamina = playerInitialStamina;
-        Debug.Log(healthStartingPosition);
-        Debug.Log(((playerInitialHealth / healthStartingWidth) * playerHealth) / 2);
     }
 
     // Update is called once per frame
@@ -42,17 +40,13 @@ public class StatusBarScript : MonoBehaviour
 
     public void changePlayerHealth(float amount)
     {
-        Debug.Log("Health Transform Position.x:" + healthTransform.position.x);
-        Debug.Log("Health Size Change:" + (healthStartingWidth / playerInitialHealth) * playerHealth);
         playerHealth += amount;
         healthTransform.sizeDelta = new Vector2((healthStartingWidth / playerInitialHealth) * playerHealth, healthTransform.sizeDelta.y);
-        healthTransform.position = new Vector2(healthStartingPosition - (healthStartingWidth - (healthStartingWidth / playerInitialHealth) * playerHealth)/2, healthTransform.position.y);
     }
 
     public void changePlayerStamina(float amount)
     {
         playerStamina += amount;
         staminaTransform.sizeDelta = new Vector2((staminaStartingWidth / playerInitialStamina) * playerStamina, staminaTransform.sizeDelta.y);
-        staminaTransform.position = new Vector2(staminaTransform.position.x - ((staminaStartingWidth / playerInitialStamina) * playerStamina / 2), staminaTransform.position.y);
     }
 }
