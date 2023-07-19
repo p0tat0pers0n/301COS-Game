@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public StatusBarScript sn;
 
     private float speed = 5f; // Player movement speed
-    private int previousTime;
+    private bool isSprinting;
     private Rigidbody rb;
     private CapsuleCollider playerCollider;
     private Vector3 movementInput;
@@ -56,19 +56,27 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Player Sprint
-        if (Input.GetKey(KeyCode.LeftShift) && sn.playerStamina > 0)
+        if (sn.playerStamina > 0)
         {
-            speed = 25f;
-
-            if (Mathf.RoundToInt(Time.time) % 0.5 == 0 && previousTime != Mathf.RoundToInt(Time.time)) { 
-                sn.changePlayerStamina(-1);
-                previousTime = Mathf.RoundToInt(Time.time);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                isSprinting = true;
+                speed = 8f;
+                StopCoroutine(sprintBarIncrease());
+                StartCoroutine(sprintBarDecrease());
+            }else
+            {
+                isSprinting = false;
+                speed = 5f;
+                StopCoroutine(sprintBarDecrease());
+                StartCoroutine(sprintBarIncrease());
             }
-        }
-        else
+        }else
         {
+            isSprinting = false;
             speed = 5f;
-            if (sn.playerStamina < 100) { sn.changePlayerStamina(1); }
+            StopCoroutine(sprintBarDecrease());
+            StartCoroutine(sprintBarIncrease());
         }
 
         // Apply mouse smoothing
@@ -99,5 +107,25 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetFloat("Horizontal", horizontalInput);
         anim.SetFloat("Vertical", verticalInput);
+    }
+
+    // Coroutine for sprint decrease
+    IEnumerator sprintBarDecrease()
+    {
+        yield return new WaitForSecondsRealtime(0.25f);
+        sn.changePlayerStamina(-1);
+    }
+
+    // Coroutine for sprint increase
+    IEnumerator sprintBarIncrease()
+    {
+        if (sn.playerStamina < 100)
+        {
+            sn.changePlayerStamina(1);
+            yield return new WaitForSecondsRealtime(1);
+        }else
+        {
+            yield break;
+        }
     }
 }
