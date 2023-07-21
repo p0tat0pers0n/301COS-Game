@@ -60,23 +60,33 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                isSprinting = true;
-                speed = 8f;
-                StopCoroutine(sprintBarIncrease());
-                StartCoroutine(sprintBarDecrease());
-            }else
+                if (!isSprinting)
+                {
+                    isSprinting = true;
+                    speed = 10f;
+                    StopCoroutine(sprintBarIncrease());
+                    StartCoroutine(sprintBarDecrease());
+                }
+            }
+            else
+            {
+                if (isSprinting)
+                {
+                    isSprinting = false;
+                    speed = 5f;
+                    StopCoroutine(sprintBarDecrease());
+                    StartCoroutine(sprintBarIncrease());
+                }
+            }
+        }else
+        {
+            if (isSprinting)
             {
                 isSprinting = false;
                 speed = 5f;
                 StopCoroutine(sprintBarDecrease());
                 StartCoroutine(sprintBarIncrease());
             }
-        }else
-        {
-            isSprinting = false;
-            speed = 5f;
-            StopCoroutine(sprintBarDecrease());
-            StartCoroutine(sprintBarIncrease());
         }
 
         // Apply mouse smoothing
@@ -112,20 +122,21 @@ public class PlayerMovement : MonoBehaviour
     // Coroutine for sprint decrease
     IEnumerator sprintBarDecrease()
     {
-        yield return new WaitForSecondsRealtime(0.25f);
-        sn.changePlayerStamina(-1);
+        while (sn.playerStamina > 0 && isSprinting)
+        {
+            yield return new WaitForSecondsRealtime(0.01f);
+            sn.changePlayerStamina(-0.1f);
+        }
     }
 
     // Coroutine for sprint increase
     IEnumerator sprintBarIncrease()
     {
-        if (sn.playerStamina < 100)
+        while (sn.playerStamina < 100 && !isSprinting)
         {
-            sn.changePlayerStamina(1);
-            yield return new WaitForSecondsRealtime(1);
-        }else
-        {
-            yield break;
+            sn.changePlayerStamina(0.25f);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
+        yield break;
     }
 }
