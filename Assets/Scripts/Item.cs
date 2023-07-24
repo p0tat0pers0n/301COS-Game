@@ -8,5 +8,6 @@ public class Item : ScriptableObject
     public Sprite icon;
     public string itemName;
     public int amount;
+    public int hotbarSlot;
     public bool equipped;
 }

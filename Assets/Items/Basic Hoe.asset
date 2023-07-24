@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   itemName: Basic Hoe
-  amount: 0
+  amount: 1
+  hotbarSlot: 1
   equipped: 0
