@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                if (!isSprinting)
+                if (!isSprinting && sn.playerStamina > 0)
                 {
                     isSprinting = true;
                     speed = 10f;

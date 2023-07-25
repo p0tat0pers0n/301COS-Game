@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: d941f8fbf09e81440b0763da4f4e6f97, type: 3}
   itemName: Potato
-  amount: 0
+  amount: 100
   hotbarSlot: 4
   equipped: 0
