@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,9 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerCamera;
     public GameObject player;
     public StatusBarScript sn;
+    public GameObject staminaBar;
 
     private float speed = 5f; // Player movement speed
-    private bool isSprinting;
+    private bool isSprinting, isRefilling;
     private Rigidbody rb;
     private CapsuleCollider playerCollider;
     private Vector3 movementInput;
@@ -56,15 +59,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Player Sprint
-        if (sn.playerStamina > 0)
+        if (sn.playerStamina > 1)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                if (!isSprinting && sn.playerStamina > 0)
+                if (!isSprinting && sn.playerStamina > 0 && isRefilling == false)
                 {
                     isSprinting = true;
                     speed = 10f;
-                    StopCoroutine(sprintBarIncrease());
                     StartCoroutine(sprintBarDecrease());
                 }
             }
@@ -73,8 +75,8 @@ public class PlayerMovement : MonoBehaviour
                 if (isSprinting)
                 {
                     isSprinting = false;
+                    isRefilling = true;
                     speed = 5f;
-                    StopCoroutine(sprintBarDecrease());
                     StartCoroutine(sprintBarIncrease());
                 }
             }
@@ -83,10 +85,18 @@ public class PlayerMovement : MonoBehaviour
             if (isSprinting)
             {
                 isSprinting = false;
+                isRefilling = true;
                 speed = 5f;
-                StopCoroutine(sprintBarDecrease());
                 StartCoroutine(sprintBarIncrease());
             }
+        }
+        if (sn.playerStamina >= 10 && isRefilling) {
+            isRefilling = false;
+            staminaBar.GetComponent<Image>().color = new Color32(60, 147, 245, 255); // Sets stamina bar back to blue when player can sprint again
+        }
+        else if (isRefilling)
+        {
+            staminaBar.GetComponent<Image>().color = new Color32(245, 49, 49, 255); // Sets stamina bar to red when the bar is not usable/refilling
         }
 
         // Apply mouse smoothing
