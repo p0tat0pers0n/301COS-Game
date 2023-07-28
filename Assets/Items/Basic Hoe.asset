@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a453be3be4a0149934a79292e382c3, type: 3}
   m_Name: Basic Hoe
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 5d23826b5b0052147ab13ba3d24407ec, type: 3}
+  model: {fileID: 919132149155446097, guid: 3d31ae03a11313a48a0d1a3257977740, type: 3}
   itemName: Basic Hoe
   amount: 1
   hotbarSlot: 1

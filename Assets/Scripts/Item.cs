@@ -6,6 +6,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public Sprite icon;
+    public GameObject model;
     public string itemName;
     public int amount;
     public int hotbarSlot;

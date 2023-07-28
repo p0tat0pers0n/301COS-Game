@@ -3899,6 +3899,7 @@ MonoBehaviour:
   playerCamera: {fileID: 836234033}
   player: {fileID: 1546323601}
   sn: {fileID: 1546323609}
+  staminaBar: {fileID: 999769633}
   rotationSpeed: 700
 --- !u!54 &1546323603
 Rigidbody:
