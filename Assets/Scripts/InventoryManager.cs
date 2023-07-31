@@ -6,18 +6,20 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     public Item[] items = new Item[3];
-    public Item potatoes;
     public GameObject hotbar;
+    public GameObject player;
+    public GameObject hoe, shovel, wateringcan;
 
     private int activeSlot;
-    private GameObject hoe, shovel, wateringcan, potatoes;
 
     // Start is called before the first frame update
     void Start()
     {
         updateInventoryDisplay();
-        hoe = Instantiate(Resources.Load())
     }
+    /// <summary>
+    /// https://gamedevbeginner.com/how-to-make-an-inventory-system-in-unity/
+    /// </summary>
 
     public void updateInventoryDisplay()
     {
@@ -32,26 +34,29 @@ public class InventoryManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            unEquipItems();
             activeSlot = 1;
+            holdItem();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            unEquipItems();
             activeSlot = 2;
+            holdItem();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            unEquipItems();
             activeSlot = 3;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            activeSlot = 4;
+            holdItem();
         }
     }
 
     private void unEquipItems()
     {
-        for (int i = 0; i<4; i++)
+        for (int i = 0; i<3; i++)
         {
+            Debug.Log(i);
             items[i].equipped = false;
         }
     }
@@ -62,18 +67,16 @@ public class InventoryManager : MonoBehaviour
         {
             case 1:
                 items[activeSlot].equipped = true;
-
+                hoe.transform.parent = player.transform.parent;
+                Debug.Log("parented");
                 break;
             case 2:
                 items[activeSlot].equipped = true;
-
+                shovel.transform.parent = player.transform.parent;
                 break;
             case 3:
                 items[activeSlot].equipped = true;
-
-                break;
-            case 4:
-                potatoes.equipped = true;
+                wateringcan.transform.parent = player.transform.parent;
                 break;
         }
     }
