@@ -7,15 +7,15 @@ public class InventoryManager : MonoBehaviour
 {
     public Item[] items = new Item[3];
     public GameObject hotbar;
-    public GameObject player;
-    public GameObject hoe, shovel, wateringcan;
+    public GameObject hand;
 
-    private int activeSlot;
+    private int activeSlot, prevSlot;
 
     // Start is called before the first frame update
     void Start()
     {
         updateInventoryDisplay();
+        activeSlot = 0;
     }
     /// <summary>
     /// https://gamedevbeginner.com/how-to-make-an-inventory-system-in-unity/
@@ -56,28 +56,24 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i<3; i++)
         {
-            Debug.Log(i);
             items[i].equipped = false;
+        }
+        for (int i = 0; i<hand.transform.childCount; i++)
+        {
+            Destroy(hand.transform.GetChild(i));
         }
     }
 
     private void holdItem()
     {
-        switch(activeSlot)
-        {
-            case 1:
-                items[activeSlot].equipped = true;
-                hoe.transform.parent = player.transform.parent;
-                Debug.Log("parented");
-                break;
-            case 2:
-                items[activeSlot].equipped = true;
-                shovel.transform.parent = player.transform.parent;
-                break;
-            case 3:
-                items[activeSlot].equipped = true;
-                wateringcan.transform.parent = player.transform.parent;
-                break;
+        if (activeSlot != prevSlot) {
+            prevSlot = activeSlot;
+            GameObject itemModel = Instantiate(items[(activeSlot - 1)].model);
+            itemModel.transform.parent = hand.transform;
+            itemModel.transform.rotation = hand.transform.rotation;
+            itemModel.transform.position = hand.transform.position;
+
+            hotbar.transform.GetChild(activeSlot - 1).GetComponent<>//change material to get the weird grey selected colour
         }
     }
 }
