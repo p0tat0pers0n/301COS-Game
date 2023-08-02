@@ -34,33 +34,37 @@ public class InventoryManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            unEquipItems();
             activeSlot = 1;
+            unEquipItems();
             holdItem();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            unEquipItems();
             activeSlot = 2;
+            unEquipItems();
             holdItem();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            unEquipItems();
             activeSlot = 3;
+            unEquipItems();
             holdItem();
         }
     }
 
     private void unEquipItems()
     {
-        for (int i = 0; i<3; i++)
+        if (activeSlot != prevSlot)
         {
-            items[i].equipped = false;
-        }
-        for (int i = 0; i<hand.transform.childCount; i++)
-        {
-            Destroy(hand.transform.GetChild(i));
+            for (int i = 0; i < 3; i++)
+            {
+                items[i].equipped = false;
+                hotbar.transform.GetChild(i).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 100);//change material to get the unselected colour
+            }
+            for (int i = 0; i < hand.transform.childCount; i++)
+            {
+                Destroy(hand.transform.GetChild(i).gameObject);
+            }
         }
     }
 
@@ -73,7 +77,7 @@ public class InventoryManager : MonoBehaviour
             itemModel.transform.rotation = hand.transform.rotation;
             itemModel.transform.position = hand.transform.position;
 
-            hotbar.transform.GetChild(activeSlot - 1).GetComponent<>//change material to get the weird grey selected colour
+            hotbar.transform.GetChild(activeSlot - 1).gameObject.GetComponent<Image>().color = new Color32(113, 102, 102, 100);//change material to get the weird grey selected colour
         }
     }
 }
