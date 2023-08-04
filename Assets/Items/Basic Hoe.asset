@@ -18,3 +18,5 @@ MonoBehaviour:
   amount: 1
   hotbarSlot: 1
   equipped: 0
+  position: {x: 0, y: 0, z: 0}
+  rotation: {x: 15, y: 0, z: 0, w: 1}

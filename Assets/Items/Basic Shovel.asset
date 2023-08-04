@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a453be3be4a0149934a79292e382c3, type: 3}
   m_Name: Basic Shovel
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 00ca573ae65802141ab94a5a9d10525b, type: 3}
+  model: {fileID: 6319586940194069422, guid: af03c32e417f75c43b74bcc1b98ab708, type: 3}
   itemName: Basic Shovel
   amount: 1
   hotbarSlot: 2
