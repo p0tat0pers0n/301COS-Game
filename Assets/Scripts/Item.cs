@@ -11,5 +11,5 @@ public class Item : ScriptableObject
     public int amount, hotbarSlot;
     public bool equipped;
     public Vector3 position;
-    public Vector3 rotation;
+    public Quaternion rotation;
 }
