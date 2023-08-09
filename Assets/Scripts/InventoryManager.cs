@@ -67,14 +67,14 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
-    Quaternion rotation;
-    private void holdItem()
+
+private void holdItem()
     {
         if (activeSlot != prevSlot) {
             prevSlot = activeSlot;
             GameObject itemModel = Instantiate(items[activeSlot - 1].model);
             itemModel.transform.parent = hand.transform;
-            itemModel.transform.rotation = Quaternion.Euler(new Vector3(items[activeSlot - 1].rotation.x, 0, items[activeSlot - 1].rotation.z));
+            itemModel.transform.rotation = hand.transform.rotation * items[activeSlot - 1].rotation;
             itemModel.transform.position = new Vector3(hand.transform.position.x + items[activeSlot - 1].position.x, hand.transform.position.y + items[activeSlot - 1].position.y, hand.transform.position.z + items[activeSlot - 1].position.z);
 
             hotbar.transform.GetChild(activeSlot - 1).gameObject.GetComponent<Image>().color = new Color32(113, 102, 102, 100);//change material to get the weird grey selected colour
