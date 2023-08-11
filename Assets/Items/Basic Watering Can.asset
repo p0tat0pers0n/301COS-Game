@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a453be3be4a0149934a79292e382c3, type: 3}
   m_Name: Basic Watering Can
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 59d381c4694639c458a5c5e836126cc7, type: 3}
+  model: {fileID: 3181395112360702637, guid: 214d5b6dcbe6bca40bd801a2af698122, type: 3}
   itemName: Basic Watering Can
   amount: 1
   hotbarSlot: 3
   equipped: 0
+  position: {x: -0.3, y: 0.5, z: 0.01}
+  rotation: {x: 0, y: 0, z: 0}
