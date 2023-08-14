@@ -371,6 +371,7 @@
 "Assets/Scripts/Item.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/PlayerStats.cs"
+"Assets/Scripts/TimeController.cs"
 -langversion:9.0
 
 /deterministic
