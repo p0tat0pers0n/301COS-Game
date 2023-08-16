@@ -369,6 +369,8 @@
 -analyzer:"C:/Program Files/Unity 2022.2.14f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/InventoryManager.cs"
 "Assets/Scripts/Item.cs"
+"Assets/Scripts/LightingManager.cs"
+"Assets/Scripts/LightingPreset.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/PlayerStats.cs"
 "Assets/Scripts/TimeController.cs"
