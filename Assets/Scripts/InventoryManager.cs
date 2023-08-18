@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,17 +52,15 @@ public class InventoryManager : MonoBehaviour
 
     private void unEquipItems()
     {
-        if (activeSlot != prevSlot)
+        prevSlot = 0;
+        for (int i = 0; i < 3; i++)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                items[i].equipped = false;
-                hotbar.transform.GetChild(i).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 100);//change material to get the unselected colour
-            }
-            for (int i = 0; i < hand.transform.childCount; i++)
-            {
-                Destroy(hand.transform.GetChild(i).gameObject);
-            }
+            items[i].equipped = false;
+            hotbar.transform.GetChild(i).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 100);//change material to get the unselected colour
+        }
+        for (int i = 0; i < hand.transform.childCount; i++)
+        {
+            Destroy(hand.transform.GetChild(i).gameObject);
         }
     }
 

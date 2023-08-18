@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\TimeController.cs" />
+    <Compile Include="Assets\Scripts\PlotController.cs" />
     <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\LightingPreset.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
