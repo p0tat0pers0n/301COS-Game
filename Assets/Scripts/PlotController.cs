@@ -6,20 +6,16 @@ public class PlotController : MonoBehaviour
 {
     [SerializeField] private GameObject plotContainer;
     private int growthState;
+    private int growthTime
     // Start is called before the first frame update
     void Start()
     {
         growthState = 0;
+
     }
 
-    void checkGrowth()
+    void FixedUpdate()
     {
-        if (growthState == 0)
-        {
-            for (int i = 0; i < plotContainer.transform.childCount; i++)
-            {
-                //plotContainer.transform.GetChild(i).
-            }
-        }
+        growthTime++;
     }
 }
