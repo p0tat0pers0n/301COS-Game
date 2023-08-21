@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
-    public plotScript plotScript;
+    public PlotController plotScript;
     public int currentTime, numberOfDays;
     public GameObject sun;
 
@@ -36,7 +36,6 @@ public class TimeController : MonoBehaviour
                 if (!isDay)
                 {
                     numberOfDays++;
-                    plotScript.increaseGrowth();
                 }
                 isDay = !isDay;
                 isNight = !isNight;
