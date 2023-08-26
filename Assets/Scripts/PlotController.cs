@@ -8,6 +8,8 @@ public class PlotController : MonoBehaviour
     [SerializeField] private GameObject text;
     [SerializeField] private GameObject interactText;
     [SerializeField] private GameObject player;
+    public Item wateringCan;
+    public Item shovel;
 
     private int growthState, growthTime, requiredGrowthTime, intervalGrowth;
     private double fixedGrowthTime;
@@ -28,7 +30,7 @@ public class PlotController : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (!planted || !watered)
+        if (!planted || !watered || growthState == 3)
         {
             Ray ray;
             RaycastHit hit;
@@ -40,7 +42,7 @@ public class PlotController : MonoBehaviour
                 {
                     withinRange = true;
                     if (!planted) { interactText.GetComponent<Text>().text = "Plant Potatoes"; }
-                    if (!watered) { interactText.GetComponent<Text>().text = "Water Crops"; }
+                    if (!watered && wateringCan.equipped && planted) { interactText.GetComponent<Text>().text = "Water Crops"; }
                 }
             }
         }
@@ -59,15 +61,16 @@ public class PlotController : MonoBehaviour
             planted = true;
             withinRange = false;
             interactText.GetComponent<Text>().text = "";
-            gameObject.GetComponent<MeshRenderer>().material = materials[0];
+            gameObject.GetComponent<MeshRenderer>().material = materials[1];
         }
 
-        if (Input.GetMouseButtonDown(0) && withinRange && !watered)
+        if (Input.GetMouseButtonDown(0) && withinRange && !watered && planted)
         {
-            /*if (player)
+            if (wateringCan.equipped)
             {
-
-            }*/
+                watered = true;
+                interactText.GetComponent<Text>().text = "";
+            }
         }
     }
 
@@ -104,6 +107,18 @@ public class PlotController : MonoBehaviour
                         gameObject.GetComponent<MeshRenderer>().material = materials[growthState];
                     }
                     break;
+            }
+        }else if (!watered && planted)
+        {
+            text.GetComponent<TextMesh>().text = "!";
+        }
+
+        if (growthState == 3)
+        {
+            text.GetComponent<TextMesh>().text = "Harvest Now";
+            if (withinRange && shovel.equipped)
+            {
+                potatoes = 
             }
         }
     }

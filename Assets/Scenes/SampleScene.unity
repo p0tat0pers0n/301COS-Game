@@ -1652,6 +1652,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 2059432113}
   interactText: {fileID: 1318062239}
+  player: {fileID: 1546323601}
+  wateringCan: {fileID: 11400000, guid: 6bc9b3a073b4e5c4186aae5349770169, type: 2}
   materials:
   - {fileID: 2100000, guid: 63d583f32d488cb4f9ad35c0365dbb02, type: 2}
   - {fileID: 2100000, guid: 0d3dabec12f4afc4085e0d8f5d5b0570, type: 2}
@@ -3002,8 +3004,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -372.5}
-  m_SizeDelta: {x: -1610, y: -795}
+  m_AnchoredPosition: {x: 0, y: -395.58453}
+  m_SizeDelta: {x: -1610, y: -841.1691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051227383
 MonoBehaviour:

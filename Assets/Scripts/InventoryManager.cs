@@ -68,6 +68,7 @@ private void holdItem()
     {
         if (activeSlot != prevSlot) {
             prevSlot = activeSlot;
+            items[activeSlot - 1].equipped = true;
             GameObject itemModel = Instantiate(items[activeSlot - 1].model);
             itemModel.transform.parent = hand.transform;
             itemModel.transform.rotation = hand.transform.rotation * Quaternion.Euler(items[activeSlot - 1].rotation);
