@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PotatoManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int potatoes;
+    [SerializeField] private GameObject potatoCounter;
+
     void Start()
     {
-        
+        potatoes = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void increasePotatoes()
     {
-        
+        potatoes += Random.Range(16, 40);
+        potatoCounter.GetComponent<Text>().text = potatoes.ToString();
     }
 }

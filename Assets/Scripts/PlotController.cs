@@ -10,6 +10,7 @@ public class PlotController : MonoBehaviour
     [SerializeField] private GameObject player;
     public Item wateringCan;
     public Item shovel;
+    public PotatoManager potatoCounter;
 
     private int growthState, growthTime, requiredGrowthTime, intervalGrowth;
     private double fixedGrowthTime;
@@ -43,6 +44,7 @@ public class PlotController : MonoBehaviour
                     withinRange = true;
                     if (!planted) { interactText.GetComponent<Text>().text = "Plant Potatoes"; }
                     if (!watered && wateringCan.equipped && planted) { interactText.GetComponent<Text>().text = "Water Crops"; }
+                    if (planted && growthState == 3) { interactText.GetComponent<Text>().text = "Harvest Potatoes"; }
                 }
             }
         }
@@ -71,6 +73,17 @@ public class PlotController : MonoBehaviour
                 watered = true;
                 interactText.GetComponent<Text>().text = "";
             }
+        }
+
+        if (Input.GetMouseButtonDown(0) && withinRange && shovel.equipped && growthState == 3)
+        {
+            potatoCounter.increasePotatoes();
+            planted = false;
+            watered = false;
+            growthState = 0;
+            fixedGrowthTime = 0;
+            growthTime = 0;
+            gameObject.GetComponent<MeshRenderer>().material = materials[0];
         }
     }
 
@@ -112,14 +125,10 @@ public class PlotController : MonoBehaviour
         {
             text.GetComponent<TextMesh>().text = "!";
         }
-
+        
         if (growthState == 3)
         {
             text.GetComponent<TextMesh>().text = "Harvest Now";
-            if (withinRange && shovel.equipped)
-            {
-                potatoes = 
-            }
         }
     }
 }
