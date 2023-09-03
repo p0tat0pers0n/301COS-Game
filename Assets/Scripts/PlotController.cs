@@ -10,13 +10,14 @@ public class PlotController : MonoBehaviour
     [SerializeField] private GameObject player;
     public Item wateringCan;
     public Item shovel;
+    public Item hoe;
     public PotatoManager potatoCounter;
 
     private int growthState, growthTime, requiredGrowthTime, intervalGrowth;
     private double fixedGrowthTime;
-    private bool planted, withinRange, watered;
+    private bool planted, withinRange, watered, readyToPlant;
     private LayerMask mask;
-    public List<Material> materials = new List<Material>(3);
+    public List<Material> materials = new List<Material>(5);
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class PlotController : MonoBehaviour
         intervalGrowth = 5;
         planted = false;
         watered = false;
+        readyToPlant = false;
         mask = LayerMask.GetMask("FarmPlot");
     }
 
@@ -45,6 +47,7 @@ public class PlotController : MonoBehaviour
                     if (!planted) { interactText.GetComponent<Text>().text = "Plant Potatoes"; }
                     if (!watered && wateringCan.equipped && planted) { interactText.GetComponent<Text>().text = "Water Crops"; }
                     if (planted && growthState == 3) { interactText.GetComponent<Text>().text = "Harvest Potatoes"; }
+                    if (!planted && !readyToPlant) { interactText.GetComponent<Text>().text = "Till Soil"; }
                 }
             }
         }
@@ -58,12 +61,12 @@ public class PlotController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && withinRange && !planted)
+        if (Input.GetMouseButtonDown(0) && withinRange && !planted && readyToPlant)
         {
             planted = true;
             withinRange = false;
             interactText.GetComponent<Text>().text = "";
-            gameObject.GetComponent<MeshRenderer>().material = materials[1];
+            gameObject.GetComponent<MeshRenderer>().material = materials[2];
         }
 
         if (Input.GetMouseButtonDown(0) && withinRange && !watered && planted)
@@ -71,6 +74,15 @@ public class PlotController : MonoBehaviour
             if (wateringCan.equipped)
             {
                 watered = true;
+                interactText.GetComponent<Text>().text = "";
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0) && withinRange && !watered && !planted)
+        {
+            if (hoe.equipped)
+            {
+                readyToPlant = true;
                 interactText.GetComponent<Text>().text = "";
             }
         }
@@ -84,6 +96,7 @@ public class PlotController : MonoBehaviour
             fixedGrowthTime = 0;
             growthTime = 0;
             gameObject.GetComponent<MeshRenderer>().material = materials[0];
+            readyToPlant = false;
         }
     }
 
@@ -103,21 +116,21 @@ public class PlotController : MonoBehaviour
                     if (growthTime >= requiredGrowthTime)
                     {
                         growthState = 1;
-                        gameObject.GetComponent<MeshRenderer>().material = materials[growthState];
+                        gameObject.GetComponent<MeshRenderer>().material = materials[growthState + 1];
                     }
                     break;
                 case 1:
                     if (growthTime >= requiredGrowthTime)
                     {
                         growthState = 2;
-                        gameObject.GetComponent<MeshRenderer>().material = materials[growthState];
+                        gameObject.GetComponent<MeshRenderer>().material = materials[growthState + 1];
                     }
                     break;
                 case 2:
                     if (growthTime >= requiredGrowthTime)
                     {
                         growthState = 3;
-                        gameObject.GetComponent<MeshRenderer>().material = materials[growthState];
+                        gameObject.GetComponent<MeshRenderer>().material = materials[growthState + 1];
                     }
                     break;
             }

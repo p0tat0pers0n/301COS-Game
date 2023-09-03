@@ -1623,7 +1623,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 63d583f32d488cb4f9ad35c0365dbb02, type: 2}
+  - {fileID: 2100000, guid: c2bb77c8f21af854ea00f40fb246f319, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1670,8 +1670,10 @@ MonoBehaviour:
   player: {fileID: 1546323601}
   wateringCan: {fileID: 11400000, guid: 6bc9b3a073b4e5c4186aae5349770169, type: 2}
   shovel: {fileID: 11400000, guid: 5bc4e530f2da38c4598890e33f2c33ae, type: 2}
+  hoe: {fileID: 11400000, guid: d231b1c83ac780c4d81203823257a394, type: 2}
   potatoCounter: {fileID: 199811207}
   materials:
+  - {fileID: 2100000, guid: c2bb77c8f21af854ea00f40fb246f319, type: 2}
   - {fileID: 2100000, guid: 63d583f32d488cb4f9ad35c0365dbb02, type: 2}
   - {fileID: 2100000, guid: 0d3dabec12f4afc4085e0d8f5d5b0570, type: 2}
   - {fileID: 2100000, guid: 2bf8aaac3c849b047b9f58acc09dce85, type: 2}
