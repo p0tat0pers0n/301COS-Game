@@ -18,4 +18,10 @@ public class PotatoManager : MonoBehaviour
         potatoes += Random.Range(16, 40);
         potatoCounter.GetComponent<Text>().text = potatoes.ToString();
     }
+
+    public void decreasePotatoes(int amount)
+    {
+        potatoes -= amount;
+        potatoCounter.GetComponent<Text>().text = potatoes.ToString();
+    }
 }

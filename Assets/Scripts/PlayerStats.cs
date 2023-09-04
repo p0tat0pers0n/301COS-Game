@@ -15,18 +15,14 @@ public class StatusBarScript : MonoBehaviour
     private RectTransform staminaTransform;
     private float healthStartingWidth;
     private float staminaStartingWidth;
-    private float healthStartingPosition;
-    private float staminaStartingPosition;
 
     void Start()
     {
         healthTransform = healthBar.GetComponent<RectTransform>();
         healthStartingWidth = healthTransform.rect.width;
-        healthStartingPosition = healthTransform.position.x;
 
         staminaTransform = staminaBar.GetComponent<RectTransform>();
         staminaStartingWidth = staminaTransform.rect.width;
-        staminaStartingPosition = staminaTransform.position.x;
 
         playerHealth = playerInitialHealth;
         playerStamina = playerInitialStamina;

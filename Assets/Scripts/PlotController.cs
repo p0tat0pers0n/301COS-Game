@@ -67,6 +67,7 @@ public class PlotController : MonoBehaviour
             withinRange = false;
             interactText.GetComponent<Text>().text = "";
             gameObject.GetComponent<MeshRenderer>().material = materials[2];
+            potatoCounter.decreasePotatoes(16);
         }
 
         if (Input.GetMouseButtonDown(0) && withinRange && !watered && planted)
@@ -84,6 +85,8 @@ public class PlotController : MonoBehaviour
             {
                 readyToPlant = true;
                 interactText.GetComponent<Text>().text = "";
+                text.GetComponent<TextMesh>().text = "Plant Crops";
+                gameObject.GetComponent<MeshRenderer>().material = materials[1];
             }
         }
 
