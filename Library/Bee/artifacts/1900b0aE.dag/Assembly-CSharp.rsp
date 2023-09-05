@@ -371,6 +371,7 @@
 "Assets/kawetofe_assets/RandomPrefabPlacerV2/scripts/editorScripts/ScriptableObjectUtility.cs"
 "Assets/kawetofe_assets/RandomPrefabPlacerV2/scripts/EffectScripts/PlacingEffect.cs"
 "Assets/kawetofe_assets/RandomPrefabPlacerV2/scripts/RandomPrefabPlacer.cs"
+"Assets/Scripts/DeathScript.cs"
 "Assets/Scripts/InventoryManager.cs"
 "Assets/Scripts/Item.cs"
 "Assets/Scripts/LightingManager.cs"

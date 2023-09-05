@@ -10,7 +10,7 @@ public class PotatoManager : MonoBehaviour
 
     void Start()
     {
-        potatoes = 0;
+        potatoes = 32;
     }
 
     public void increasePotatoes()

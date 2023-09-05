@@ -63,11 +63,14 @@ public class PlotController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && withinRange && !planted && readyToPlant)
         {
-            planted = true;
-            withinRange = false;
-            interactText.GetComponent<Text>().text = "";
-            gameObject.GetComponent<MeshRenderer>().material = materials[2];
-            potatoCounter.decreasePotatoes(16);
+            if (potatoCounter.potatoes >= 16)
+            {
+                planted = true;
+                withinRange = false;
+                interactText.GetComponent<Text>().text = "";
+                gameObject.GetComponent<MeshRenderer>().material = materials[2];
+                potatoCounter.decreasePotatoes(16);
+            }
         }
 
         if (Input.GetMouseButtonDown(0) && withinRange && !watered && planted)

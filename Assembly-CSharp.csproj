@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\LightingManager.cs" />
     <Compile Include="Assets\kawetofe_assets\RandomPrefabPlacerV2\scripts\editorScripts\ScriptableObjectUtility.cs" />
+    <Compile Include="Assets\Scripts\DeathScript.cs" />
     <Compile Include="Assets\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\kawetofe_assets\RandomPrefabPlacerV2\scripts\RandomPrefabPlacer.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
