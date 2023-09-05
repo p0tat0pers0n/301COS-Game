@@ -16,7 +16,6 @@ public class PlotController : MonoBehaviour
     private int growthState, growthTime, requiredGrowthTime, intervalGrowth;
     private double fixedGrowthTime;
     private bool planted, withinRange, watered, readyToPlant;
-    private LayerMask mask;
     public List<Material> materials = new List<Material>(5);
     // Start is called before the first frame update
     void Start()
@@ -28,7 +27,6 @@ public class PlotController : MonoBehaviour
         planted = false;
         watered = false;
         readyToPlant = false;
-        mask = LayerMask.GetMask("FarmPlot");
     }
 
     private void OnMouseOver()

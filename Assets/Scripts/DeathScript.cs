@@ -11,13 +11,14 @@ public class DeathScript : MonoBehaviour
     [SerializeField] private bool isDead;
     private int opacity, delay;
     private LayerMask mask;
+    private RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
     {
         isDead = false;
         opacity = 50;
-        mask = LayerMask.GetMask("Ocean");
+        mask = LayerMask.GetMask("Water");
     }
 
     // Update is called once per frame
@@ -43,16 +44,12 @@ public class DeathScript : MonoBehaviour
         {
             delay++;
         }
-
-        Ray ray;
-        RaycastHit hit;
-
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.distance <= 5)
+        
+        if (Physics.Raycast(player.transform.position, -Vector3.up, out hit, (float)1)) {
+            Debug.Log(hit.collider.ToString());
+            if (hit.collider.ToString() == "Ocean (UnityEngine.MeshCollider)")
             {
-
+                isDead = true;
             }
         }
     }
