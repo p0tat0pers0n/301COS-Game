@@ -11,6 +11,7 @@ public class PotatoManager : MonoBehaviour
     void Start()
     {
         potatoes = 32;
+        potatoCounter.GetComponent<Text>().text = potatoes.ToString();
     }
 
     public void increasePotatoes()
@@ -23,5 +24,13 @@ public class PotatoManager : MonoBehaviour
     {
         potatoes -= amount;
         potatoCounter.GetComponent<Text>().text = potatoes.ToString();
+    }
+
+    public void checkWin()
+    {
+        if (potatoes >= 1000)
+        {
+
+        }
     }
 }
