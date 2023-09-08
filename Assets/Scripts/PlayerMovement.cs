@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject player;
     public StatusBarScript sn;
     public GameObject staminaBar;
+    public bool allowPlayerMovement;
 
     private float speed = 5f; // Player movement speed
     private bool isSprinting, isRefilling;
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         distToGround = playerCollider.bounds.extents.y;
 
         StatusBarScript sn = player.GetComponent<StatusBarScript>();
+        allowPlayerMovement = true;
     }
 
     private bool IsGrounded()
@@ -45,29 +47,42 @@ public class PlayerMovement : MonoBehaviour
     private double desiredTimeAtJump = 0;
     private void Update()
     {
-        // Get player input
-        movementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        float rawMouseX = Input.GetAxis("Mouse X");
-        float rawMouseY = Input.GetAxis("Mouse Y");
-
-        Physics.Raycast(transform.position, -Vector3.up, out hit);
-        float distancetoGround = hit.distance - 1;
-        if (Input.GetKey(KeyCode.Space) && distancetoGround <= jumpGroundAllowance && desiredTimeAtJump <= Time.fixedTimeAsDouble)
+        if (allowPlayerMovement)
         {
-            desiredTimeAtJump = Time.fixedTimeAsDouble + 0.1;
-            rb.velocity += new Vector3(0f, jumpAcceleration, 0f);
-        }
+            // Get player input
+            movementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+            float rawMouseX = Input.GetAxis("Mouse X");
+            float rawMouseY = Input.GetAxis("Mouse Y");
 
-        // Player Sprint
-        if (sn.playerStamina > 1)
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
+            Physics.Raycast(transform.position, -Vector3.up, out hit);
+            float distancetoGround = hit.distance - 1;
+            if (Input.GetKey(KeyCode.Space) && distancetoGround <= jumpGroundAllowance && desiredTimeAtJump <= Time.fixedTimeAsDouble)
             {
-                if (!isSprinting && sn.playerStamina > 0 && isRefilling == false)
+                desiredTimeAtJump = Time.fixedTimeAsDouble + 0.1;
+                rb.velocity += new Vector3(0f, jumpAcceleration, 0f);
+            }
+
+            // Player Sprint
+            if (sn.playerStamina > 1)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    isSprinting = true;
-                    speed = 10f;
-                    StartCoroutine(sprintBarDecrease());
+                    if (!isSprinting && sn.playerStamina > 0 && isRefilling == false)
+                    {
+                        isSprinting = true;
+                        speed = 10f;
+                        StartCoroutine(sprintBarDecrease());
+                    }
+                }
+                else
+                {
+                    if (isSprinting)
+                    {
+                        isSprinting = false;
+                        isRefilling = true;
+                        speed = 5f;
+                        StartCoroutine(sprintBarIncrease());
+                    }
                 }
             }
             else
@@ -80,31 +95,23 @@ public class PlayerMovement : MonoBehaviour
                     StartCoroutine(sprintBarIncrease());
                 }
             }
-        }else
-        {
-            if (isSprinting)
+            if (sn.playerStamina >= 10 && isRefilling)
             {
-                isSprinting = false;
-                isRefilling = true;
-                speed = 5f;
-                StartCoroutine(sprintBarIncrease());
+                isRefilling = false;
+                staminaBar.GetComponent<Image>().color = new Color32(60, 147, 245, 255); // Sets stamina bar back to blue when player can sprint again
             }
-        }
-        if (sn.playerStamina >= 10 && isRefilling) {
-            isRefilling = false;
-            staminaBar.GetComponent<Image>().color = new Color32(60, 147, 245, 255); // Sets stamina bar back to blue when player can sprint again
-        }
-        else if (isRefilling)
-        {
-            staminaBar.GetComponent<Image>().color = new Color32(245, 49, 49, 255); // Sets stamina bar to red when the bar is not usable/refilling
-        }
+            else if (isRefilling)
+            {
+                staminaBar.GetComponent<Image>().color = new Color32(245, 49, 49, 255); // Sets stamina bar to red when the bar is not usable/refilling
+            }
 
-        // Apply mouse smoothing
-        mouseXSmooth = Mathf.SmoothDamp(mouseXSmooth, rawMouseX, ref mouseXVel, rotationSmoothing);
-        mouseYSmooth = Mathf.SmoothDamp(mouseYSmooth, rawMouseY, ref mouseYVel, rotationSmoothing);
+            // Apply mouse smoothing
+            mouseXSmooth = Mathf.SmoothDamp(mouseXSmooth, rawMouseX, ref mouseXVel, rotationSmoothing);
+            mouseYSmooth = Mathf.SmoothDamp(mouseYSmooth, rawMouseY, ref mouseYVel, rotationSmoothing);
 
-        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
+            Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
         }
+    }
 
     private void FixedUpdate()
     {

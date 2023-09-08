@@ -12,10 +12,12 @@ public class LightingManager : MonoBehaviour
     [SerializeField, Range(0, 24)] private float TimeOfDay;
     [SerializeField, Range(0, 24000)] private float fixedTimeOfDay;
     [SerializeField] private bool isDay;
+    public int numberOfDays;
 
     void Start()
     {
         moonLight.transform.rotation = Quaternion.Euler(new Vector3(sunLight.transform.rotation.x - 180f, sunLight.transform.rotation.y, sunLight.transform.rotation.z));
+        numberOfDays = 0;
     }
 
     void Update()
@@ -29,7 +31,10 @@ public class LightingManager : MonoBehaviour
             TimeOfDay = (fixedTimeOfDay / 1000) * 3;
             TimeOfDay %= 24; //Modulus to ensure always between 0-24
             UpdateLighting(TimeOfDay / 24f);
-            if (TimeOfDay >= 8 && TimeOfDay < 16 && !isDay) { isDay = true; }
+            if (TimeOfDay >= 8 && TimeOfDay < 16 && !isDay) {
+                isDay = true;
+                numberOfDays++;
+            }
             else if (isDay) { isDay = false; }
         }
         else

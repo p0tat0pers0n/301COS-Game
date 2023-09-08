@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DeathScript : MonoBehaviour
 {   
     public GameObject player;
+    public PlayerMovement playerMovement;
 
     [SerializeField] private Vector3 respawnPosition;
     [SerializeField] private bool isDead;
@@ -38,6 +39,7 @@ public class DeathScript : MonoBehaviour
         {
             opacity--;
             gameObject.GetComponent<Image>().color = new Color32(0, 0, 0, (byte)opacity);
+            if (opacity == 10) { playerMovement.allowPlayerMovement = true; }
         }
 
         if (!isDead && opacity >= 255)
@@ -57,5 +59,6 @@ public class DeathScript : MonoBehaviour
     public void playerDeath()
     {
         isDead = true;
+        playerMovement.allowPlayerMovement = false;
     }
 }

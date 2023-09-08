@@ -23,7 +23,7 @@ public class PlotController : MonoBehaviour
         growthState = 0;
         growthTime = 0;
         fixedGrowthTime = 0;
-        intervalGrowth = 5;
+        intervalGrowth = 60;
         planted = false;
         watered = false;
         readyToPlant = false;

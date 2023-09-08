@@ -381,7 +381,6 @@
 "Assets/Scripts/PlayerStats.cs"
 "Assets/Scripts/PlotController.cs"
 "Assets/Scripts/PotatoManager.cs"
-"Assets/Scripts/TimeController.cs"
 -langversion:9.0
 
 /deterministic
