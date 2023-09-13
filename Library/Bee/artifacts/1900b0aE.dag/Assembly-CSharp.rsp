@@ -377,6 +377,7 @@
 "Assets/Scripts/Item.cs"
 "Assets/Scripts/LightingManager.cs"
 "Assets/Scripts/LightingPreset.cs"
+"Assets/Scripts/MainMenu.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/PlayerStats.cs"
 "Assets/Scripts/PlotController.cs"
