@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Item", menuName ="Item Details")]
 public class Item : ScriptableObject
 {
+    /// <summary>
+    /// This scriptable object holds information for upgradable items (future).
+    /// </summary>
     public Sprite icon;
     public GameObject model;
     public string itemName;

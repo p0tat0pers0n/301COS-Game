@@ -50,7 +50,6 @@ public class DeathScript : MonoBehaviour
         
         // Checks if the player dies to the ocean and marks them as dead
         if (Physics.Raycast(player.transform.position, -Vector3.up, out hit, (float)1)) {
-            Debug.Log(hit.collider.ToString());
             if (hit.collider.ToString() == "Ocean (UnityEngine.MeshCollider)")
             {
                 isDead = true;

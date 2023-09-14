@@ -114,6 +114,7 @@ public class PlotController : MonoBehaviour
             growthTime = 0;
             gameObject.GetComponent<MeshRenderer>().material = materials[0];
             readyToPlant = false;
+            interactText.GetComponent<Text>().text = "???";
         }
     }
 
