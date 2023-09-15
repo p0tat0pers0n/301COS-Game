@@ -1,7 +1,5 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp:
-    - kawetofe.randomPrefabPlacer.RandomPrefabPlacer
     Assembly-CSharp.dll:
     - DeathScript
     - GameManager
@@ -9,12 +7,11 @@ ScriptsOnlyBuild:
     - Item
     - LightingManager
     - LightingPreset
+    - MainMenu
     - PlayerMovement
     - PlotController
     - PotatoManager
     - StatusBarScript
-    - kawetofe.randomPrefabPlacer.RPPBrush
-    - kawetofe.randomPrefabPlacer.RandomPrefabPlacer
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TerrainTools.Editor.dll:
@@ -59,14 +56,13 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshPro
     - TMPro.TextMeshProUGUI
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -82,8 +78,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   serializedClasses:
-    Assembly-CSharp:
-    - kawetofe.randomPrefabPlacer.PlacementPrefab
     Unity.TextMeshPro:
     - TMPro.FaceInfo_Legacy
     - TMPro.FontAssetCreationSettings
@@ -117,7 +111,16 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.SpriteState
-  methodsToPreserve: []
+  methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenu
+    methodName: showStory
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenu
+    methodName: quitGame
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenu
+    methodName: playGame
   sceneClasses:
     Assets/Scenes/Game.unity:
     - Class: 1
@@ -163,45 +166,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1726}
     - Class: 114
-      Script: {instanceID: 2050}
+      Script: {instanceID: 2962}
     - Class: 114
-      Script: {instanceID: 2670}
+      Script: {instanceID: 3216}
     - Class: 114
-      Script: {instanceID: 2968}
+      Script: {instanceID: 3220}
     - Class: 114
-      Script: {instanceID: 3222}
+      Script: {instanceID: 3802}
     - Class: 114
-      Script: {instanceID: 3226}
+      Script: {instanceID: 3836}
     - Class: 114
-      Script: {instanceID: 3808}
+      Script: {instanceID: 4142}
     - Class: 114
-      Script: {instanceID: 3842}
+      Script: {instanceID: 5378}
     - Class: 114
-      Script: {instanceID: 5384}
+      Script: {instanceID: 5672}
     - Class: 114
-      Script: {instanceID: 5678}
+      Script: {instanceID: 6090}
     - Class: 114
-      Script: {instanceID: 6096}
+      Script: {instanceID: 6406}
     - Class: 114
-      Script: {instanceID: 6414}
+      Script: {instanceID: 6570}
     - Class: 114
-      Script: {instanceID: 6578}
+      Script: {instanceID: 6720}
     - Class: 114
-      Script: {instanceID: 6728}
+      Script: {instanceID: 6812}
     - Class: 114
-      Script: {instanceID: 6820}
+      Script: {instanceID: 7028}
     - Class: 114
-      Script: {instanceID: 7036}
+      Script: {instanceID: 7436}
     - Class: 114
-      Script: {instanceID: 7444}
+      Script: {instanceID: 7822}
     - Class: 114
-      Script: {instanceID: 7830}
+      Script: {instanceID: 8462}
     - Class: 114
-      Script: {instanceID: 8472}
+      Script: {instanceID: 8620}
     - Class: 114
-      Script: {instanceID: 8630}
-    - Class: 114
-      Script: {instanceID: 9500}
+      Script: {instanceID: 9488}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -239,19 +240,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
-    - Class: 23
-      Script: {instanceID: 0}
     - Class: 28
-      Script: {instanceID: 0}
-    - Class: 33
-      Script: {instanceID: 0}
-    - Class: 43
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
     - Class: 49
-      Script: {instanceID: 0}
-    - Class: 64
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
@@ -264,36 +257,32 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1726}
     - Class: 114
-      Script: {instanceID: 2456}
+      Script: {instanceID: 2452}
     - Class: 114
-      Script: {instanceID: 2670}
+      Script: {instanceID: 2962}
     - Class: 114
-      Script: {instanceID: 2968}
+      Script: {instanceID: 3216}
     - Class: 114
-      Script: {instanceID: 3222}
+      Script: {instanceID: 3574}
     - Class: 114
-      Script: {instanceID: 3580}
+      Script: {instanceID: 4212}
     - Class: 114
-      Script: {instanceID: 4724}
+      Script: {instanceID: 4718}
     - Class: 114
-      Script: {instanceID: 4862}
+      Script: {instanceID: 4856}
     - Class: 114
-      Script: {instanceID: 5190}
+      Script: {instanceID: 5184}
     - Class: 114
-      Script: {instanceID: 6096}
+      Script: {instanceID: 6090}
     - Class: 114
-      Script: {instanceID: 6820}
+      Script: {instanceID: 6812}
     - Class: 114
-      Script: {instanceID: 7036}
+      Script: {instanceID: 7028}
     - Class: 114
-      Script: {instanceID: 7444}
-    - Class: 114
-      Script: {instanceID: 35270}
+      Script: {instanceID: 7436}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 136
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -382,12 +371,6 @@ ScriptsOnlyBuild:
     className: UnityOnMouseExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 9b5d592225dc9aca7b793ab4f8eb9e35
-    assemblyName: Assembly-CSharp
-    namespaceName: kawetofe.randomPrefabPlacer
-    className: RPPBrush
-  - hash:
-      serializedVersion: 2
       Hash: d1dd4a74a82d0cec8cfdd6a90169a18b
     assemblyName: Cinemachine
     namespaceName: 
@@ -446,12 +429,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: RawImage
-  - hash:
-      serializedVersion: 2
-      Hash: 4c2105a00f5afe4c005d13c72baa6b02
-    assemblyName: Assembly-CSharp
-    namespaceName: kawetofe.randomPrefabPlacer
-    className: RandomPrefabPlacer
   - hash:
       serializedVersion: 2
       Hash: 73badd6c839f4c397ed1708588a757e3
@@ -556,7 +533,7 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
-      Hash: d3d82ae1c531b6e899d13bb6d5f3bbb2
+      Hash: 4eb5cd25f096b767d9e4c59d59f39f19
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerMovement
@@ -706,7 +683,7 @@ ScriptsOnlyBuild:
     className: VariablesAsset
   - hash:
       serializedVersion: 2
-      Hash: 2627ffa6a7feb25f8ff9245a2bb9e5b1
+      Hash: f87252fa235c5a1e6d5fb1cb439f2fb8
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: StatusBarScript
@@ -770,6 +747,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnCollisionExit2DMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: d10c255d0fb49461ef5b0a23bd11d41a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MainMenu
   - hash:
       serializedVersion: 2
       Hash: cc45e39aeb99e57722ebd11e4fd2b263
@@ -1138,7 +1121,7 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
-      Hash: 1ce57df66d18fe0935212760df0b3c8e
+      Hash: e9d7cb7094d50e59aa887be260e727fb
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
@@ -1456,16 +1439,10 @@ ScriptsOnlyBuild:
     className: CinemachineTrackedDolly
   - hash:
       serializedVersion: 2
-      Hash: 5c36cdc0e067c8d4db25d3f0c8223572
+      Hash: 5e8414e36e2a1ff1f9f89e44227ee8c7
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: LightingManager
-  - hash:
-      serializedVersion: 2
-      Hash: 751e5bae2a317288c2ab58d66687092b
-    assemblyName: Assembly-CSharp
-    namespaceName: kawetofe.randomPrefabPlacer
-    className: PlacingEffect
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1602,4 +1579,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/Game.unity
-  playerPath: H:/veryimportantproject/veryimportantproject.exe
+  playerPath: H:/Year 12/Game/Build 4/veryimportantproject.exe

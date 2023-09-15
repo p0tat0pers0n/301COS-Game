@@ -27,12 +27,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementInput; // The vector that the player is moved by
     private RaycastHit hit; // The ray object that holds that it hit and how far away it is
     public float rotationSpeed = 100f; // Player rotation speed
-    // Mouse smoothing variables
-    private float mouseXSmooth = 0f;
-    private float mouseYSmooth = 0f;
-    private float mouseXVel = 0f;
-    private float mouseYVel = 0f;
-    
+
+    private float yRotation;
+    private float xRotation;
+    public float sensX;
+    public float sensY;
+
     private float distToGround; // The given distance from the ground
     private double desiredTimeAtJump = 0; // The time after the cooldown has elapsed for the player to jump
 
@@ -56,6 +56,19 @@ public class PlayerMovement : MonoBehaviour
             movementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
             float rawMouseX = Input.GetAxis("Mouse X");
             float rawMouseY = Input.GetAxis("Mouse Y");
+
+            // Player movement
+            //Get Mouse Input
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+            //Apply Mouse Input
+            yRotation += mouseX;
+            xRotation -= mouseY;
+            //Clamp Input to 90 degrees
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            //Rotate Cam and Orientation
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            //orientation.rotation = Quaternion.Euler(0, yRotation, 0);
 
             // This function returns a distance from the bottom of the player to an object
             Physics.Raycast(transform.position, -Vector3.up, out hit);
@@ -118,36 +131,16 @@ public class PlayerMovement : MonoBehaviour
                 staminaBar.GetComponent<Image>().color = new Color32(245, 49, 49, 255); // Sets stamina bar to red when the bar is not usable/refilling
             }
 
-            // Apply mouse smoothing
-            mouseXSmooth = Mathf.SmoothDamp(mouseXSmooth, rawMouseX, ref mouseXVel, rotationSmoothing);
-            mouseYSmooth = Mathf.SmoothDamp(mouseYSmooth, rawMouseY, ref mouseYVel, rotationSmoothing);
-
             Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
+
+            // Get input values
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+
+            // Set the animator values
+            anim.SetFloat("Horizontal", horizontalInput);
+            anim.SetFloat("Vertical", verticalInput);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        // Move the player
-        rb.MovePosition(rb.position + transform.TransformDirection(movementInput) * speed * Time.fixedDeltaTime);
-
-        // Rotate the player based on mouse input
-        float xRotation = mouseXSmooth * rotationSpeed * Time.fixedDeltaTime;
-        float yRotation = mouseYSmooth * rotationSpeed * Time.fixedDeltaTime;
-
-        rb.MoveRotation(rb.rotation * Quaternion.Euler(Vector3.up * xRotation));
-        // Rotate the camera only on the X-axis (up and down)
-        Vector3 cameraRotation = playerCamera.localEulerAngles;
-        cameraRotation.x -= yRotation;
-        playerCamera.localEulerAngles = cameraRotation;
-
-        // Get input values
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        // Set the animator values
-        anim.SetFloat("Horizontal", horizontalInput);
-        anim.SetFloat("Vertical", verticalInput);
     }
 
     // Coroutine for sprint decrease
