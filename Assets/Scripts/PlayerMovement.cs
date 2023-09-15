@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
         StatusBarScript statusBarScript = player.GetComponent<StatusBarScript>();
         allowPlayerMovement = true;
+        sensX = 100;
+        sensY = 100;
     }
 
     private void Update()
@@ -54,8 +56,6 @@ public class PlayerMovement : MonoBehaviour
             // If the player is allowed to move receive input
             // Get player input
             movementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-            float rawMouseX = Input.GetAxis("Mouse X");
-            float rawMouseY = Input.GetAxis("Mouse Y");
 
             // Player movement
             //Get Mouse Input
@@ -67,8 +67,9 @@ public class PlayerMovement : MonoBehaviour
             //Clamp Input to 90 degrees
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
             //Rotate Cam and Orientation
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-            //orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            playerCamera.rotation = Quaternion.Euler(xRotation, 0, 0);
+            rb.MovePosition(rb.position + transform.TransformDirection(movementInput) * speed * Time.deltaTime);
+            //rb.MoveRotation(rb.rotation * Quaternion.Euler(Vector3.up * xRotation));
 
             // This function returns a distance from the bottom of the player to an object
             Physics.Raycast(transform.position, -Vector3.up, out hit);
