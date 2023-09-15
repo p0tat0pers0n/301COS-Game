@@ -45,8 +45,9 @@ public class PlayerMovement : MonoBehaviour
 
         StatusBarScript statusBarScript = player.GetComponent<StatusBarScript>();
         allowPlayerMovement = true;
-        sensX = 100;
-        sensY = 100;
+        sensX = 120;
+        sensY = 120;
+        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
     }
 
     private void Update()
@@ -58,18 +59,24 @@ public class PlayerMovement : MonoBehaviour
             movementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 
             // Player movement
-            //Get Mouse Input
+            // Get Mouse Input
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
             float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
-            //Apply Mouse Input
+            // Apply Mouse Input
             yRotation += mouseX;
             xRotation -= mouseY;
-            //Clamp Input to 90 degrees
+            // Clamp Input to 90 degrees
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-            //Rotate Cam and Orientation
+            // Rotate camera and player
             playerCamera.rotation = Quaternion.Euler(xRotation, 0, 0);
+            rb.MoveRotation(Quaternion.Euler(new Vector3(0, yRotation, 0)));
+
+            // Moves the rigid body
             rb.MovePosition(rb.position + transform.TransformDirection(movementInput) * speed * Time.deltaTime);
-            //rb.MoveRotation(rb.rotation * Quaternion.Euler(Vector3.up * xRotation));
+
+            // Sets the camera's x rotation which is independant to the player's rotation unlike the y rotation
+            playerCamera.transform.rotation = Quaternion.Euler(new Vector3(xRotation, yRotation, 0));
+            
 
             // This function returns a distance from the bottom of the player to an object
             Physics.Raycast(transform.position, -Vector3.up, out hit);
@@ -131,8 +138,6 @@ public class PlayerMovement : MonoBehaviour
                 // If the stamina is less than 10 set the stamina bar to red to notify the player that it isn't usuable
                 staminaBar.GetComponent<Image>().color = new Color32(245, 49, 49, 255); // Sets stamina bar to red when the bar is not usable/refilling
             }
-
-            Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
 
             // Get input values
             float horizontalInput = Input.GetAxis("Horizontal");

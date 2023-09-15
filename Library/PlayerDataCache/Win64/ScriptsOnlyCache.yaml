@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - LightingManager
     - LightingPreset
     - MainMenu
+    - PauseMenu
     - PlayerMovement
     - PlotController
     - PotatoManager
@@ -16,35 +17,15 @@ ScriptsOnlyBuild:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TerrainTools.Editor.dll:
     - UnityEditor.TerrainTools.BillowNoise
-    - UnityEditor.TerrainTools.BridgeTool
-    - UnityEditor.TerrainTools.CloneBrushTool
-    - UnityEditor.TerrainTools.ContrastTool
-    - UnityEditor.TerrainTools.DetailScatterTool
     - UnityEditor.TerrainTools.FbmFractalType
-    - UnityEditor.TerrainTools.HydroErosionTool
     - UnityEditor.TerrainTools.NoiseBlitShaderGenerator
     - UnityEditor.TerrainTools.NoiseFillShaderGenerator
-    - UnityEditor.TerrainTools.NoiseHeightTool
     - UnityEditor.TerrainTools.NoneFractalType
-    - UnityEditor.TerrainTools.PaintHeightTool
-    - UnityEditor.TerrainTools.PaintHolesTool
-    - UnityEditor.TerrainTools.PaintTextureTool
     - UnityEditor.TerrainTools.PerlinNoise
-    - UnityEditor.TerrainTools.PinchHeightTool
     - UnityEditor.TerrainTools.RidgeNoise
-    - UnityEditor.TerrainTools.SetHeightTool
-    - UnityEditor.TerrainTools.SharpenPeaksTool
-    - UnityEditor.TerrainTools.SlopeFlattenTool
-    - UnityEditor.TerrainTools.SmoothHeightTool
-    - UnityEditor.TerrainTools.SmudgeHeightTool
-    - UnityEditor.TerrainTools.StampTool
     - UnityEditor.TerrainTools.StrataFractalType
-    - UnityEditor.TerrainTools.TerraceErosion
-    - UnityEditor.TerrainTools.ThermalErosionTool
-    - UnityEditor.TerrainTools.TwistHeightTool
     - UnityEditor.TerrainTools.ValueNoise
     - UnityEditor.TerrainTools.VoronoiNoise
-    - UnityEditor.TerrainTools.WindErosionTool
     Unity.TextMeshPro:
     - TMPro.TMP_FontAsset
     - TMPro.TMP_Settings
@@ -61,8 +42,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -121,6 +104,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: MainMenu
     methodName: playGame
+  - assembly: Assembly-CSharp
+    fullTypeName: PauseMenu
+    methodName: quitGame
+  - assembly: Assembly-CSharp
+    fullTypeName: PauseMenu
+    methodName: resumeGame
   sceneClasses:
     Assets/Scenes/Game.unity:
     - Class: 1
@@ -170,39 +159,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3216}
     - Class: 114
-      Script: {instanceID: 3220}
+      Script: {instanceID: 3572}
     - Class: 114
-      Script: {instanceID: 3802}
+      Script: {instanceID: 4136}
     - Class: 114
-      Script: {instanceID: 3836}
+      Script: {instanceID: 5662}
     - Class: 114
-      Script: {instanceID: 4142}
+      Script: {instanceID: 6080}
     - Class: 114
-      Script: {instanceID: 5378}
+      Script: {instanceID: 6396}
     - Class: 114
-      Script: {instanceID: 5672}
+      Script: {instanceID: 6798}
     - Class: 114
-      Script: {instanceID: 6090}
+      Script: {instanceID: 7014}
     - Class: 114
-      Script: {instanceID: 6406}
+      Script: {instanceID: 7422}
     - Class: 114
-      Script: {instanceID: 6570}
+      Script: {instanceID: 9988}
     - Class: 114
-      Script: {instanceID: 6720}
+      Script: {instanceID: 9992}
     - Class: 114
-      Script: {instanceID: 6812}
+      Script: {instanceID: 9996}
     - Class: 114
-      Script: {instanceID: 7028}
+      Script: {instanceID: 10000}
     - Class: 114
-      Script: {instanceID: 7436}
+      Script: {instanceID: 10004}
     - Class: 114
-      Script: {instanceID: 7822}
+      Script: {instanceID: 10008}
     - Class: 114
-      Script: {instanceID: 8462}
+      Script: {instanceID: 10012}
     - Class: 114
-      Script: {instanceID: 8620}
+      Script: {instanceID: 10016}
     - Class: 114
-      Script: {instanceID: 9488}
+      Script: {instanceID: 10024}
+    - Class: 114
+      Script: {instanceID: 10028}
+    - Class: 114
+      Script: {instanceID: 100482}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -263,23 +256,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3216}
     - Class: 114
-      Script: {instanceID: 3574}
+      Script: {instanceID: 3572}
     - Class: 114
-      Script: {instanceID: 4212}
+      Script: {instanceID: 4710}
     - Class: 114
-      Script: {instanceID: 4718}
+      Script: {instanceID: 4848}
     - Class: 114
-      Script: {instanceID: 4856}
+      Script: {instanceID: 5176}
     - Class: 114
-      Script: {instanceID: 5184}
+      Script: {instanceID: 6080}
     - Class: 114
-      Script: {instanceID: 6090}
+      Script: {instanceID: 6798}
     - Class: 114
-      Script: {instanceID: 6812}
+      Script: {instanceID: 7014}
     - Class: 114
-      Script: {instanceID: 7028}
+      Script: {instanceID: 7422}
     - Class: 114
-      Script: {instanceID: 7436}
+      Script: {instanceID: 10020}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -533,12 +526,6 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 4eb5cd25f096b767d9e4c59d59f39f19
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PlayerMovement
-  - hash:
-      serializedVersion: 2
       Hash: 34fa63a30926bcf55d7323dae76be890
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
@@ -665,12 +652,6 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: bf24a829970a2fb3375384419459be50
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: LightingPreset
-  - hash:
-      serializedVersion: 2
       Hash: d7f033cc8df1064eacf2ab2fec1e41d0
     assemblyName: Cinemachine
     namespaceName: Cinemachine
@@ -681,12 +662,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: VariablesAsset
-  - hash:
-      serializedVersion: 2
-      Hash: f87252fa235c5a1e6d5fb1cb439f2fb8
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: StatusBarScript
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -747,12 +722,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnCollisionExit2DMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: d10c255d0fb49461ef5b0a23bd11d41a
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: MainMenu
   - hash:
       serializedVersion: 2
       Hash: cc45e39aeb99e57722ebd11e4fd2b263
@@ -927,12 +896,6 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine
     namespaceName: Cinemachine
     className: CinemachinePOV
-  - hash:
-      serializedVersion: 2
-      Hash: 5249ae6c4cb3a4b8463fe4c8796e5adb
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PlotController
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1121,12 +1084,6 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
-      Hash: e9d7cb7094d50e59aa887be260e727fb
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: GameManager
-  - hash:
-      serializedVersion: 2
       Hash: f6831ac80ec81c5d5b370c0ed0fee997
     assemblyName: Unity.VisualScripting.State
     namespaceName: Unity.VisualScripting
@@ -1143,12 +1100,6 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine
     namespaceName: Cinemachine
     className: CinemachineOrbitalTransposer
-  - hash:
-      serializedVersion: 2
-      Hash: 57620822c1ba41e50a05781422418c66
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: DeathScript
   - hash:
       serializedVersion: 2
       Hash: a49a017b805bc6b5963903daa5333d5d
@@ -1283,12 +1234,6 @@ ScriptsOnlyBuild:
     className: TriggerBehaviour
   - hash:
       serializedVersion: 2
-      Hash: 6bd252afb12c79c1b64e11f374db9794
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PotatoManager
-  - hash:
-      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1421,12 +1366,6 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 68b248cac15aabbb575a8033b247456f
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: InventoryManager
-  - hash:
-      serializedVersion: 2
       Hash: be140ea01a11255b651c097661ac55b1
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
@@ -1437,12 +1376,6 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine
     namespaceName: Cinemachine
     className: CinemachineTrackedDolly
-  - hash:
-      serializedVersion: 2
-      Hash: 5e8414e36e2a1ff1f9f89e44227ee8c7
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: LightingManager
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1529,12 +1462,6 @@ ScriptsOnlyBuild:
     className: CinemachineBasicMultiChannelPerlin
   - hash:
       serializedVersion: 2
-      Hash: 91e918b336c080b0dfd794cbb4d03c36
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: Item
-  - hash:
-      serializedVersion: 2
       Hash: afe1800287c9574079eab3fea2622416
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
@@ -1575,8 +1502,80 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: e9d7cb7094d50e59aa887be260e727fb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameManager
+  - hash:
+      serializedVersion: 2
+      Hash: bb9326108e175ee92515523bda314ecf
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerMovement
+  - hash:
+      serializedVersion: 2
+      Hash: bf24a829970a2fb3375384419459be50
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LightingPreset
+  - hash:
+      serializedVersion: 2
+      Hash: 68b248cac15aabbb575a8033b247456f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: InventoryManager
+  - hash:
+      serializedVersion: 2
+      Hash: 91e918b336c080b0dfd794cbb4d03c36
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Item
+  - hash:
+      serializedVersion: 2
+      Hash: 57620822c1ba41e50a05781422418c66
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DeathScript
+  - hash:
+      serializedVersion: 2
+      Hash: f87252fa235c5a1e6d5fb1cb439f2fb8
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: StatusBarScript
+  - hash:
+      serializedVersion: 2
+      Hash: 5e8414e36e2a1ff1f9f89e44227ee8c7
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LightingManager
+  - hash:
+      serializedVersion: 2
+      Hash: d10c255d0fb49461ef5b0a23bd11d41a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MainMenu
+  - hash:
+      serializedVersion: 2
+      Hash: 5249ae6c4cb3a4b8463fe4c8796e5adb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlotController
+  - hash:
+      serializedVersion: 2
+      Hash: 6bd252afb12c79c1b64e11f374db9794
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PotatoManager
+  - hash:
+      serializedVersion: 2
+      Hash: 0e9beeaf1e6ace56cd98c29c54790505
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PauseMenu
   platform: 19
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/Game.unity
-  playerPath: H:/Year 12/Game/Build 4/veryimportantproject.exe
+  playerPath: C:/Users/Ryan/Documents/Potato Farming Simulator Build 1/veryimportantproject.exe

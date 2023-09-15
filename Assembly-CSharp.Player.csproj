@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\PlotController.cs" />
     <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\PotatoManager.cs" />
     <Compile Include="Assets\Scripts\LightingPreset.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
